@@ -1,9 +1,7 @@
 #include <stdio.h>
 int main(){
 	int arr[100];
-	int choice, n;
-	int value;
-	int del;
+	int choice, n, sum;
 	do{
 		printf("----------------MENU-------------------\n");
 		printf("1. Nhap so phan tu va gia tri cho mang\n");
@@ -35,49 +33,83 @@ int main(){
 				
 				break;
 			case 3:
-				if(n > 0){
+					if(n == 0){
+					printf("Khong co gia tri nao trong mang!\n");
+				}else{
 					int max = arr[0];
-					for(i = 1; i < n; i++){
+					for(int i = 1; i < n; i++){
 						if(arr[i] > max){
 							max = arr[i];
 						}
 					}
-					printf("Gia tri lon nhat la: %d\n", max);
+					printf("Gia tri lon nhat trong mang la: %d\n",max);
+					
+					int min = arr[0];
+					for(int i = 1; i < n; i++){
+						if(arr[i] < min){
+							min = arr[i];
+						}
+					}
+					printf("Gia tri nho nhat trong mang la : %d\n",min);				
 				}
 				break;
 			case 4: 
-			     int sum;
-			     for(int i =0; i < n; i++){
-			     	
-				 }
-			 
-			 
-			    break;
+			    	for(int i=0; i < n; i++){
+				    	sum += arr[i];
+			    	}
+				printf("Tong cua cac phan tu trong mang la: %d\n",sum);
+			    break;	
 			case 5:
-				if(n < 100){
-				   printf("Nhap gia tri cua phan tu can them: ");
-				   scanf("%d", &value);
-				   arr[n++]= value;
-				   printf("Phan tu da duoc them \n");
-				}else{
-					printf("Mang da day");
-				}
+				    if (n < 100) {
+                    int news;
+                    printf("Nhap gia tri phan tu muon them: ");
+                    scanf("%d", &news);
+                    arr[n] = news;
+                    n++;
+                    printf("Da them phan tu vao trong mang\n");
+                } else {
+                    printf("Mang da day \n");
+                }
 				break;
 			case 6:
-				printf("Nhap phan tu muon xoa: \n");
-				scanf("%d", &value);
-				found = 0;
-				for(int i = 0; i < n; i++){
-					if(arr[i]==value){
-						del 
-					
-					}
-				}
-				
-				
+				 if (n > 0) {
+                    int del;
+                    printf("Nhap vi tri can xoa (%d): ", n - 1);
+                    scanf("%d", &del);
+                    if (del >= 0 && del < n) {
+                        for (int i = del; i < n - 1; i++) {
+                            arr[i] = arr[i + 1];
+                        }
+                        n--;
+                        printf("Da xoa phan tu tai vi tri %d\n", del);
+                    } else {
+                        printf("Vi tri khong hop le\n");
+                    }
+                } else {
+                    printf("Mang khong co phan tu nao de xoa!\n");
+                }
 				break;
 			case 7:
-				break;
+                if (n > 0) {
+                    for (int i = 0; i < n - 1; i++) {
+                    for (int j = i + 1; j < n; j++) {
+                if (arr[i] < arr[j]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        printf("Mang da duoc sap xep theo thu tu giam dan:\n");
+        for (int i = 0; i < n; i++) {
+            printf("%d ", arr[i]);
+        }
+        printf("\n");
+    } else {
+        printf("Mang khong co phan tu nao de sap xep!\n");
+    }
+    break;
+
 			case 8:
 				break;
 			case 9:
@@ -92,4 +124,3 @@ int main(){
 	}while(choice!=11);
 	return 0;
 }
-
